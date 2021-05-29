@@ -2,20 +2,80 @@
 
 set -e
 
-# install homebrew
-if [ ! -f /opt/homebrew/bin/brew ]; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+GIT_CLONE_PATH=~/projects/github.com/matatabiii
+STOW_PACKAGES_PATH="$GIT_CLONE_PATH"/dotfiles/packages
+
+unlink_packages=
+verbose=
+for i in "$@"; do
+    case "$i" in
+        -s|--skip-apps)
+            skip_apps=1
+            shift ;;
+        -v|--verbose)
+            verbose=1
+            shift ;;
+        -u=*|--unlink=*)
+            unlink_packages="${i#*=}"
+            shift ;;
+        *) ;;
+    esac
+done
+
+log() {
+    message=$1
+    echo 📌 "$message"
+}
+
+is_file() {
+    path="$1"
+    [ -f "$path" ]
+}
+
+is_dir() {
+    path="$1"
+    [ -d "$path" ]
+}
+
+ensure_dir() {
+    path="$1"
+    if ! is_dir "$path"; then
+        mkdir -p "$path"
+    fi
+}
+
+if [ -n "$unlink_packages" ]; then
+    log 'Unlinking dotfiles...'
+    stow -vD -d "$STOW_PACKAGES_PATH" -t ~ "$unlink_packages"
+    exit
 fi
 
+# install homebrew
+if ! is_file /opt/homebrew/bin/brew; then
+	log 'Setup Homebrew'
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# clone先のディレクトリが無ければ作成し、cloneする
+ensure_dir "$GIT_CLONE_PATH"
+if ! is_dir "$GIT_CLONE_PATH"/dotfiles; then
+    log 'Clone dotfiles'
+    cd "$GIT_CLONE_PATH"
+    git clone https://github.com/matatabiii/dotfiles.git
+fi
+
+
 if [ ! -d ~/dotfiles ]; then
-  cd ~
-  git clone https://github.com/matatabiii/dotfiles.git
+	cd ~
+	git clone https://github.com/matatabiii/dotfiles.git
 fi
 
 brew bundle -v --file=~/dotfiles/Brewfile
 
-if [ ! -d ~/.config ]; then
-  mkdir ~/.config
-fi
+log 'Link dotfiles'
+ensure_dir ~/.config/starship
 
-stow -v -d ~/dotfiles/packages -t ~ zsh starship
+# shellcheck disable=SC2046
+stow -vd "$STOW_PACKAGES_PATH" -t ~ $(ls $STOW_PACKAGES_PATH)
+
+# stow -v -d ~/dotfiles/packages -t ~ zsh starship

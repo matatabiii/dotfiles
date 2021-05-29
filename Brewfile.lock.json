@@ -69,6 +69,14 @@
           }
         }
       }
+    },
+    "cask": {
+      "figma": {
+        "version": "98.11.0",
+        "options": {
+          "full_name": "figma"
+        }
+      }
     }
   },
   "system": {
@@ -76,7 +84,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.1.9",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "55c79cc5f84f6ee221ec34de87f58644141d7f89",
+        "Homebrew/homebrew-core": "6c3b8493955e137a084fd053123fd65063ee16b0",
         "CLT": "12.5.0.22.9",
         "Xcode": "12.5",
         "macOS": "11.3.1"
