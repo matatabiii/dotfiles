@@ -64,13 +64,10 @@ if ! is_dir "$GIT_CLONE_PATH"/dotfiles; then
     git clone https://github.com/matatabiii/dotfiles.git
 fi
 
-
-if [ ! -d ~/dotfiles ]; then
-	cd ~
-	git clone https://github.com/matatabiii/dotfiles.git
+if [ ! "$skip_apps" ]; then
+    log 'Install Apps and CLIs'
+    brew bundle --file "$GIT_CLONE_PATH"/dotfiles/Brewfile $([ -n "$verbose" ] && echo -v)
 fi
-
-brew bundle -v --file=~/dotfiles/Brewfile
 
 log 'Link dotfiles'
 ensure_dir ~/.config/starship
