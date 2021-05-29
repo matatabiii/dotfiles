@@ -56,6 +56,12 @@ if ! is_file /opt/homebrew/bin/brew; then
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# link homebrew
+if ! is_file ~/.zprofile; then
+	log 'make .zprofile >> link homebrew'
+	echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> ~/.zprofile
+fi
+
 # clone先のディレクトリが無ければ作成し、cloneする
 ensure_dir "$GIT_CLONE_PATH"
 if ! is_dir "$GIT_CLONE_PATH"/dotfiles; then
@@ -64,21 +70,15 @@ if ! is_dir "$GIT_CLONE_PATH"/dotfiles; then
     git clone https://github.com/matatabiii/dotfiles.git
 fi
 
-# install homebrew
-if ! is_file ~/.zshrc; then
-	log 'Link zsh'
-	stow -v -d "$STOW_PACKAGES_PATH" -t ~ zsh
-fi
-
 if [ ! "$skip_apps" ]; then
     log 'Install Apps and CLIs'
     brew bundle --file "$GIT_CLONE_PATH"/dotfiles/Brewfile $([ -n "$verbose" ] && echo -v)
 fi
 
 # log 'Link dotfiles'
-# ensure_dir ~/.config/starship
+ensure_dir ~/.config/starship
 
 # shellcheck disable=SC2046
-# stow -vd "$STOW_PACKAGES_PATH" -t ~ $(ls $STOW_PACKAGES_PATH)
+stow -vd "$STOW_PACKAGES_PATH" -t ~ $(ls $STOW_PACKAGES_PATH)
 
 # stow -v -d ~/dotfiles/packages -t ~ zsh starship
