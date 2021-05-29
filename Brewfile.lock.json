@@ -76,7 +76,62 @@
         "options": {
           "full_name": "figma"
         }
+      },
+      "alfred": {
+        "version": "4.3.4,1229",
+        "options": {
+          "full_name": "alfred"
+        }
+      },
+      "visual-studio-code": {
+        "version": "1.56.2",
+        "options": {
+          "full_name": "visual-studio-code"
+        }
+      },
+      "google-chrome": {
+        "version": "91.0.4472.77",
+        "options": {
+          "full_name": "google-chrome"
+        }
+      },
+      "firefox": {
+        "version": "88.0.1",
+        "options": {
+          "full_name": "firefox"
+        }
+      },
+      "google-japanese-ime": {
+        "version": "latest",
+        "options": {
+          "full_name": "google-japanese-ime"
+        }
+      },
+      "notion": {
+        "version": "2.0.16",
+        "options": {
+          "full_name": "notion"
+        }
       }
+    },
+    "mas": {
+      "Xcode": {
+        "id": "497799835",
+        "version": "12.5"
+      },
+      "TickTick": {
+        "id": "966085870",
+        "version": "3.8.00"
+      },
+      "Twitter": {
+        "id": "1482454543",
+        "version": "8.67.2"
+      },
+      "Slack": {
+        "id": "803453959",
+        "version": "4.16.0"
+      },
+      "1password-7-password-manager": null
     }
   },
   "system": {
@@ -84,7 +139,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.1.9",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "7bd3aacf5d25d26d3a23dba7563eb63f027bfa06",
+        "Homebrew/homebrew-core": "f773415b7b4df5cd6be48c2832d702a4a34c3218",
         "CLT": "12.5.0.22.9",
         "Xcode": "12.5",
         "macOS": "11.3.1"
