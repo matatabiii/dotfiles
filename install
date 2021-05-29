@@ -64,15 +64,21 @@ if ! is_dir "$GIT_CLONE_PATH"/dotfiles; then
     git clone https://github.com/matatabiii/dotfiles.git
 fi
 
+# install homebrew
+if ! is_file ~/.zshrc; then
+	log 'Link zsh'
+	stow -v -d "$STOW_PACKAGES_PATH" -t ~ zsh
+fi
+
 if [ ! "$skip_apps" ]; then
     log 'Install Apps and CLIs'
     brew bundle --file "$GIT_CLONE_PATH"/dotfiles/Brewfile $([ -n "$verbose" ] && echo -v)
 fi
 
-log 'Link dotfiles'
-ensure_dir ~/.config/starship
+# log 'Link dotfiles'
+# ensure_dir ~/.config/starship
 
 # shellcheck disable=SC2046
-stow -vd "$STOW_PACKAGES_PATH" -t ~ $(ls $STOW_PACKAGES_PATH)
+# stow -vd "$STOW_PACKAGES_PATH" -t ~ $(ls $STOW_PACKAGES_PATH)
 
 # stow -v -d ~/dotfiles/packages -t ~ zsh starship
