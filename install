@@ -60,6 +60,7 @@ fi
 if ! is_file ~/.zprofile; then
 	log 'make .zprofile >> link homebrew'
 	echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> ~/.zprofile
+	source ~/.zprofile
 fi
 
 # clone先のディレクトリが無ければ作成し、cloneする
