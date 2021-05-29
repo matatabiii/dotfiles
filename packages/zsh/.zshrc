@@ -1,3 +1,8 @@
+export PATH=$PATH:$HOME/scripts
+export GIT_CLONE_PATH="$HOME"/projects/github.com/matatabiii
+
+alias code="open -a 'Visual Studio Code'"
+
 eval $(/opt/homebrew/bin/brew shellenv)
 eval "$(starship init zsh)"
 

@@ -50,6 +50,13 @@ if [ -n "$unlink_packages" ]; then
     exit
 fi
 
+if [ "$(dscl . -read ~/ UserShell)" = "UserShell: /bin/bash" ]; then
+    log 'Change default shell to zsh'
+    chsh -s /bin/zsh
+    chmod -R 755 /usr/local/share/zsh
+    chown -R root:staff zsh
+fi
+
 # install homebrew
 if ! is_file /opt/homebrew/bin/brew; then
 	log 'Setup Homebrew'
@@ -57,10 +64,11 @@ if ! is_file /opt/homebrew/bin/brew; then
 fi
 
 # link homebrew
-if ! is_file ~/.zprofile; then
-	log 'make .zprofile >> link homebrew'
-	echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> ~/.zprofile
-	source ~/.zprofile
+if ! is_file ~/.zshrc; then
+	log 'change now brew path'
+    eval $(/opt/homebrew/bin/brew shellenv)
+	# echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> ~/.zprofile
+	# source ~/.zprofile
 fi
 
 # clone先のディレクトリが無ければ作成し、cloneする
@@ -77,9 +85,22 @@ if [ ! "$skip_apps" ]; then
 fi
 
 # log 'Link dotfiles'
-ensure_dir ~/.config/starship
+# ensure_dir ~/.config/starship
 
 # shellcheck disable=SC2046
 stow -vd "$STOW_PACKAGES_PATH" -t ~ $(ls $STOW_PACKAGES_PATH)
 
-# stow -v -d ~/dotfiles/packages -t ~ zsh starship
+if ! is_dir /Library/ScriptingAdditions/yabai.osax; then
+    log 'Setup yabai'
+    sudo yabai --install-sa
+fi
+
+limelight_path=/usr/local/bin/limelight
+if ! is_file "$limelight_path"; then
+    git clone https://github.com/koekeishiya/limelight
+    cd limelight
+    make
+    mv ./bin/limelight /usr/local/bin/limelight
+    cd ../
+    rm -rf limelight
+fi
