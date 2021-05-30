@@ -46,7 +46,8 @@ ensure_dir() {
 
 if [ -n "$unlink_packages" ]; then
     log 'Unlinking dotfiles...'
-    stow -vD -d "$STOW_PACKAGES_PATH" -t ~ "$unlink_packages"
+    log "$unlink_packages"
+    stow -vD -d "$STOW_PACKAGES_PATH" --ignore ".DS_Store" -t ~ "$unlink_packages"
     exit
 fi
 
@@ -88,19 +89,24 @@ fi
 # ensure_dir ~/.config/starship
 
 # shellcheck disable=SC2046
-stow -vd "$STOW_PACKAGES_PATH" -t ~ $(ls $STOW_PACKAGES_PATH)
+stow -vd "$STOW_PACKAGES_PATH" --ignore ".DS_Store" -t ~ $(ls $STOW_PACKAGES_PATH)
 
-if ! is_dir /Library/ScriptingAdditions/yabai.osax; then
-    log 'Setup yabai'
-    sudo yabai --install-sa
-fi
+# if ! is_dir /Library/ScriptingAdditions/yabai.osax; then
+#     log 'Setup yabai'
+#     sudo yabai --install-sa
+# fi
 
-limelight_path=/usr/local/bin/limelight
-if ! is_file "$limelight_path"; then
-    git clone https://github.com/koekeishiya/limelight
-    cd limelight
-    make
-    mv ./bin/limelight /usr/local/bin/limelight
-    cd ../
-    rm -rf limelight
-fi
+# limelight_path=/usr/local/bin/limelight
+# if ! is_file "$limelight_path"; then
+#     log 'Setup limelight'
+#     cd ~
+#     if ! is_dir ~/limelight; then
+#         # git clone https://github.com/koekeishiya/limelight
+#         git clone https://github.com/koekeishiya/limelight.git -b focused_border_only
+#     fi
+#     cd limelight
+#     make
+#     mv ./bin/limelight /usr/local/bin/limelight
+#     cd ../
+#     rm -rf limelight
+# fi
