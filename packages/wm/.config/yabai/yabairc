@@ -18,12 +18,18 @@ yabai -m config window_gap                   06
 # set float layout for MBP display
 space_indices_on_mbp_display="$(
     yabai -m query --displays \
-        | jq -e 'map(select(.uuid == "2F917C32-1D54-4830-4A41-1078CDA43226")) | .[0].spaces[]'
+        | jq -e 'map(select(.uuid == "26F45C0E-6BCB-5220-B908-2634EF9BCC99")) | .[0].spaces[]'
 )"
 for index in "$space_indices_on_mbp_display"
 do
     yabai -m config --space "$index" layout stack
 done
+
+# Rules
+yabai -m rule --add app="^Calendar$"           manage=off
+yabai -m rule --add app="^TickTick$"         manage=off
+yabai -m rule --add app="^Disk Utility$"       manage=off
+yabai -m rule --add app="^システム環境設定$" manage=off
 
 # Mouse
 yabai -m config mouse_modifier               ctrl
@@ -32,12 +38,6 @@ yabai -m config focus_follows_mouse          autoraise
 
 # Debug
 yabai -m config debug_output on
-
-# Rules
-yabai -m rule --add app="^Calendar$"           manage=off
-yabai -m rule --add app="^Dictionary$"         manage=off
-yabai -m rule --add app="^Disk Utility$"       manage=off
-yabai -m rule --add app="^System Preferences$" manage=off
 
 echo "yabai configuration loaded..."
 
