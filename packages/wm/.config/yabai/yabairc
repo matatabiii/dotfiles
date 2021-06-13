@@ -26,12 +26,12 @@ do
 done
 
 # Rules
-yabai -m rule --add app = "^Finder$" manage = off
-yabai -m rule --add app = "^TickTick$" manage = off
-yabai -m rule --add app = "^ディスクユーティリティ$" manage = off
-yabai -m rule --add app = "^システム環境設定$" manage = off
-yabai -m rule --add app = "^Eagle$"  manage = off
-yabai -m rule --add app = "^LINE$"   manage = off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^TickTick$" manage=off
+yabai -m rule --add app="^ディスクユーティリティ$" manage=off
+yabai -m rule --add app="^システム環境設定$" manage=off
+yabai -m rule --add app="^Eagle$" manage=off
+yabai -m rule --add app="^LINE$" manage=off
 
 # Mouse
 yabai -m config mouse_modifier               ctrl
