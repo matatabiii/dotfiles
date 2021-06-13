@@ -4,7 +4,7 @@
 
 alt - f : yabai -m space --layout float
 # Toggle between bsp and stack
-alt + shift - space : [ "$(yabai -m query --spaces --space | jq -r '.type')" = bsp ] \
+alt + ctrl - space : [ "$(yabai -m query --spaces --space | jq -r '.type')" = bsp ] \
     && yabai -m space --layout stack \
     || yabai -m space --layout bsp
 
@@ -25,10 +25,10 @@ alt + shift - n : open /Applications/Notion.app
 alt - c : yabai -m window --close
 
 # navigate
-alt - 0x27 : yabai -m window --focus stack.next \
-    || yabai -m window --focus next
 alt - 0x29 : yabai -m window --focus stack.prev \
     || yabai -m window --focus prev
+alt - 0x27 : yabai -m window --focus stack.next \
+    || yabai -m window --focus next
 alt - tab : yabai -m window --focus stack.recent \
     || yabai -m window --focus recent
 
@@ -42,20 +42,20 @@ alt + shift - m  : yabai -m space --mirror x-axis
 alt - r : yabai -m space --rotate 270
 
 # warp
-alt + shift - 0x27 : yabai -m window --warp next
 alt + shift - 0x29 : yabai -m window --warp prev
+alt + shift - 0x27 : yabai -m window --warp next
 
 # full
-alt - space : yabai -m window --toggle zoom-fullscreen
+alt + ctrl - return : yabai -m window --toggle zoom-fullscreen
 
 # resize
-fn + alt - 0x21 : yabai -m window --resize top:0:-40 \
+alt + ctrl - 0x21 : yabai -m window --resize top:0:-40 \
     || yabai -m window --resize bottom:0:-40
-fn + alt - 0x27 : yabai -m window --resize right:40:0 \
+alt + ctrl - 0x27 : yabai -m window --resize right:40:0 \
     || yabai -m window --resize left:40:0
-fn + alt - 0x2C : yabai -m window --resize bottom:0:40 \
+alt + ctrl - 0x2C : yabai -m window --resize bottom:0:40 \
     || yabai -m window --resize top:0:40
-fn + alt - 0x29 : yabai -m window --resize left:-40:0 \
+alt + ctrl - 0x29 : yabai -m window --resize left:-40:0 \
     || yabai -m window --resize right:-40:0
 
 ###########################################################
