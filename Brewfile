@@ -9,6 +9,7 @@ brew "stow"
 brew "yabai"
 brew "zsh"
 brew "zsh-autosuggestions"
+brew "nvm"
 
 cask "alfred"
 cask "visual-studio-code"

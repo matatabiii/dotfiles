@@ -80,6 +80,18 @@ if ! is_dir "$GIT_CLONE_PATH"/dotfiles; then
     git clone https://github.com/matatabiii/dotfiles.git
 fi
 
+# install nvm
+if ! is_dir ~/.nvm; then
+	log 'create ~/.nvm'
+    mkdir ~/.nvm
+	log 'write ~/.nvm'
+    {
+        echo 'export NVM_DIR="$HOME/.nvm"'
+        echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh" # This loads nvm'
+        echo '[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion'
+    } >> ~/.zshrc
+fi
+
 if [ ! "$skip_apps" ]; then
     log 'Install Apps and CLIs'
     brew bundle --file "$GIT_CLONE_PATH"/dotfiles/Brewfile $([ -n "$verbose" ] && echo -v)
