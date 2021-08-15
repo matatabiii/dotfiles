@@ -11,6 +11,7 @@ brew "zsh"
 brew "zsh-autosuggestions"
 brew "nvm"
 
+cask "raycast"
 cask "alfred"
 cask "visual-studio-code"
 cask "google-chrome"
