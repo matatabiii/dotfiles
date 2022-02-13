@@ -20,6 +20,7 @@ cask "google-japanese-ime"
 cask "notion"
 cask "figma"
 cask "fig"
+cask "skitch"
 
 mas "TickTick", id: 966085870
 mas "Twitter", id: 1482454543
