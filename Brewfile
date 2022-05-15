@@ -27,5 +27,6 @@ cask "numi"
 mas "TickTick", id: 966085870
 mas "Twitter", id: 1482454543
 mas "Slack", id: 803453959
+mas "paste-clipboard-manager", id: 967805235
 mas "1password-7-password-manager", id: 1333542190
 # mas "Xcode", id: 497799835
