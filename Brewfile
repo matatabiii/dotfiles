@@ -25,6 +25,7 @@ cask "devtoys"
 cask "numi"
 cask "spectacle"
 cask "bartender"
+cask "alt-tab"
 
 mas "TickTick", id: 966085870
 mas "Twitter", id: 1482454543
