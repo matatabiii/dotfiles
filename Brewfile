@@ -23,6 +23,7 @@ cask "fig"
 cask "skitch"
 cask "devtoys"
 cask "numi"
+cask "spectacle"
 
 mas "TickTick", id: 966085870
 mas "Twitter", id: 1482454543
