@@ -1,5 +1,10 @@
 add_newline = false
 
+# [localip]
+# ssh_only = false
+# format = "@ [$localipv4](bold red) "
+# disabled = false
+
 [character]
 success_symbol = "🦄 "
 error_symbol = "🥺 "
