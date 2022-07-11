@@ -1,6 +1,23 @@
 [user]
-	name = matatabiii
+	name = KeishirouKawaguchi
 	email = 27771489+matatabiii@users.noreply.github.com
+[alias]
+	s   = status -sb
+	d   = diff
+	a   = add
+	aa  = add -A
+	b   = branch
+	co  = checkout
+	cob = checkout -b
+	c   = commit
+	cm  = commit -m
+	pso = push origin
+	pl  = pull
+	plo = pull origin
+	f   = fetch
+	fup = fetch upstream
+[pull]
+	rebase = false
 [init]
 	defaultBranch = main
 [core]
